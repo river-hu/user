@@ -5,24 +5,26 @@
       <div class="group">
         <router-link to="/about">
         <Icon class="icon" type="ios-contact" />
-        <span data-v-29570c10="">我的介绍</span>
+        <span >我的介绍</span>
         </router-link>
       </div>
       <div class="group">
+        <router-link to="/skill">
         <Icon type="ios-construct" class="icon"/>
-        <span data-v-29570c10="">我的技能</span>
+        <span >我的技能</span>
+        </router-link>
       </div>
       <div class="group">
        <Icon type="ios-bulb" class="icon"/>
-        <span data-v-29570c10="">算法研究</span>
+        <span >技术研究</span>
       </div>
       <div class="group">
         <Icon type="md-list-box" class="icon"/>
-        <span data-v-29570c10="">我的作品</span>
+        <span >我的作品</span>
       </div>
       <div class="group">
         <Icon type="md-code-download" class="icon"/>
-        <span data-v-29570c10="">&nbsp;&nbsp;资料库&nbsp;&nbsp;</span>
+        <span >&nbsp;&nbsp;资料库&nbsp;&nbsp;</span>
       </div>
   </div>
 </template>
