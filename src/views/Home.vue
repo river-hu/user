@@ -14,17 +14,24 @@
         <span >我的技能</span>
         </router-link>
       </div>
+      
       <div class="group">
+        <router-link to="/mycode">
        <Icon type="ios-bulb" class="icon"/>
         <span >技术研究</span>
+        </router-link>
       </div>
       <div class="group">
+        <router-link to="/work">
         <Icon type="md-list-box" class="icon"/>
         <span >我的作品</span>
+        </router-link>
       </div>
       <div class="group">
+        <router-link to="/warehouse">
         <Icon type="md-code-download" class="icon"/>
         <span >&nbsp;&nbsp;资料库&nbsp;&nbsp;</span>
+        </router-link>
       </div>
   </div>
 </template>

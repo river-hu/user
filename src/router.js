@@ -20,6 +20,21 @@ export default new Router({
       path: '/skill',
       name: 'skill',
       component: () => import(/* webpackChunkName: "about" */ './views/Skill.vue')
+    },
+    {
+      path: '/mycode',
+      name: 'mycode',
+      component: () => import(/* webpackChunkName: "about" */ './views/Mycode.vue')
+    },
+    {
+      path: '/work',
+      name: 'work',
+      component: () => import(/* webpackChunkName: "about" */ './views/Work.vue')
+    },
+    {
+      path: '/warehouse',
+      name: 'warehouse',
+      component: () => import(/* webpackChunkName: "about" */ './views/Warehouse.vue')
     }
   ]
 })

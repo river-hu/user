@@ -10,15 +10,7 @@
     export default {
       
     };
-    let a = true;
-    setInterval(() => {
-      a = !a;
-      if (a) {
-        document.body.style.backgroundPosition = "center -20px";
-      } else {
-        document.body.style.backgroundPosition = "center 0px";
-      }
-    }, 1000);
+  
 </script>
 
 
@@ -27,7 +19,32 @@
       background: url(../public/bg.jpg) center 0 no-repeat;
       background-size: 1920px 1080px;
       transition: background 1s linear;
+        -webkit-animation: bgan ease-in-out 2s infinite;
+    animation: bgan ease-in-out 2s infinite;
     }
+    @-webkit-keyframes bgan {
+  0% {
+    background-position: center 0px;
+  }
+  50% {
+    background-position: center -20px;
+  }
+  100% {
+    background-position: center 0px;
+  }
+}
+
+@keyframes bgan {
+  0% {
+    background-position: center 0px;
+  }
+  50% {
+    background-position: center -20px;
+  }
+  100% {
+    background-position: center 0px;
+  }
+}
     .slide-fade-enter-active {
     transition: all .4s ease;
     }
