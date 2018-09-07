@@ -35,6 +35,11 @@ export default new Router({
       path: '/warehouse',
       name: 'warehouse',
       component: () => import(/* webpackChunkName: "about" */ './views/Warehouse.vue')
+    },
+    {
+      path: '/msg',
+      name: 'msg',
+      component: () => import(/* webpackChunkName: "about" */ './views/Msg.vue')
     }
   ]
 })
