@@ -11,7 +11,7 @@ import App from './App.vue'
 
 Vue.use(iView);
 
-Vue.prototype.url = "http://127.0.0.1:3000"
+Vue.prototype.url = "http://www.raziel.site:3000"
 Vue.config.productionTip = false
 
 new Vue({

@@ -15,7 +15,6 @@
 <script>
 // or with import syntax
 import io from "socket.io-client";
-import axios from "axios";
 export default {
   name: "msg",
   data() {
@@ -80,7 +79,7 @@ export default {
     this.ws.on("server", (from, msg) => {
       console.log(msg)
       //检测私聊信息
-      this.addMessage(from, msg);
+      this.addMessage("网站站长", msg);
     });
   }
 };
