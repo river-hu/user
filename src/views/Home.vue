@@ -33,12 +33,49 @@
         <span >&nbsp;&nbsp;资料库&nbsp;&nbsp;</span>
         </router-link>
       </div>
+      <div class="group">
+        <router-link to="/msg">
+        <Icon type="md-chatboxes" class="icon"/>
+        <span >问题反馈</span>
+        </router-link>
+      </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
-  name: "home"
+  name: "home",
+  created() {
+    //生成用户id
+    if (!window.sessionStorage.getItem("userid")) {
+      //生成十位数字与字母的无序组合
+      let id = "";
+      let str = "qwertyuiopasdfghjklzxcvbnm1234567890";
+      let url = this.url;
+      // let test = () => {
+        for (let i = 0; i < 10; i++) {
+          id += str.charAt(Math.floor((Math.random() * 100) % 34));
+        }
+         window.sessionStorage.setItem("userid", id);
+         }
+    //     axios
+    //       .get(url+"/selectname", {
+    //         params: {
+    //           name: id
+    //         }
+    //       })
+    //       .then(res => {
+    //         if (res.data == "fslse" || !res.data) {
+    //           window.localStorage.setItem("userid", id);
+    //         } else {
+    //           test();
+    //         }
+    //       });
+    //   };
+    //    test();
+    // }
+  }
 };
 </script>
 
@@ -46,7 +83,7 @@ export default {
 .home {
   position: absolute;
   width: 400px;
-  height: 550px;
+  height: 600px;
   top: 100px;
   left: 50%;
   margin-left: -200px;

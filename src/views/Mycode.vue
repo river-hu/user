@@ -5,6 +5,7 @@
     </router-link>
      <Tabs >
         <TabPane label="算法研究"  icon="md-code-working">
+          <h2>更多内容陆续添加中</h2>
             <div class="box">
               
               <h1 @click="onoff">递归实现冒泡排序</h1>
@@ -17,62 +18,91 @@
               </div>
           </div>
         </TabPane>
-        <TabPane label="爬虫研究"  icon="ios-bug">标签二的内容</TabPane>
-        <TabPane label="其他js研究"  icon="logo-javascript">标签三的内容</TabPane>
+        <TabPane label="爬虫研究"  icon="ios-bug">
+          <h2>更多内容陆续添加中</h2>
+              <Card style="width:400px">
+                <div style="text-align:center">
+                    目标网站 ： <a href="http://www.pmtown.com/archives/category/%E6%97%A9%E6%8A%A5" class="tag" target="_BLANK">泡面早班车</a> 
+                </div>
+                <p>
+                  实现效果：爬取新闻列表页面最新的一页数据。并组合数据返回
+                </p>
+                <p class="btn">
+                  <Button type="info" @click="start">爬取新闻数据</Button>
+                </p>
+            </Card>
+            <Card class="palist" v-if="data!=null">
+                <div class="p_list">最新的新闻页面地址 {{data.url}}</div>
+                <div class="p_list" v-for="(v,index) in data.data" v-bind:key="index">{{v.data}}</div>
+            </Card>
+        </TabPane>
+        <TabPane label="其他js研究"  icon="logo-javascript"><h2>更多内容陆续添加中</h2>
+
+        </TabPane>
     </Tabs>
  
 </div>    
 </template>
 <script>
+import axios from "axios";
 export default {
   name: "mycode",
   data() {
     return {
       arr: [],
       off: false,
-      index:0
+      index: 0,
+      data: null
     };
   },
   methods: {
     onoff() {
-       this.arr=[];
-       this.index= 0;
+      this.arr = [];
+      this.index = 0;
       for (var i = 0; i < 10; i++) {
         //生成随机数
-        this.arr.push({a:Math.floor(Math.random() * 100)});
+        this.arr.push({ a: Math.floor(Math.random() * 100) });
       }
       this.off = true;
     },
-    star(){ //开始排序函数
-       var len = this.arr.length;
-        var j = 0;
-        var that = this;
-        
-       cdis();  //嵌套内部循环
-       function cdis(){
-        
-        if(that.arr[j].a>that.arr[j+1].a){
-             
-             var temp = that.arr[j].a; //数据交换
-            that.arr[j].a= that.arr[j+1].a
-            that.arr[j+1].a= temp;
+    star() {
+      //开始排序函数
+      var len = this.arr.length;
+      var j = 0;
+      var that = this;
+
+      cdis(); //嵌套内部循环
+      function cdis() {
+        if (that.arr[j].a > that.arr[j + 1].a) {
+          var temp = that.arr[j].a; //数据交换
+          that.arr[j].a = that.arr[j + 1].a;
+          that.arr[j + 1].a = temp;
         }
         j++;
-        if(j<len-that.index-1){ //内层循环终止指令
-            cdis();
+        if (j < len - that.index - 1) {
+          //内层循环终止指令
+          cdis();
         }
-       }
-        that.index++;
-        if(that.index<len){ //外层循环终止指令
-            this.star();
-        }
+      }
+      that.index++;
+      if (that.index < len) {
+        //外层循环终止指令
+        this.star();
+      }
     },
-    close(){
+    close() {
       this.off = false;
+    },
+    start() {
+      let url = this.url;
+      axios.get(url, { header: {} }).then(res => {
+        this.data = res.data;
+      });
     }
   }
 };
 </script>
+
 <style lang="less" scoped>
 @fcolor : #285aa5;
 @bgcolor :rgba(255, 255, 255, 0.7);
@@ -83,15 +113,24 @@ export default {
 .code {
   width: 80%;
   min-width: 600px;
-  height: 800px;
+  min-height: 800px;
   margin: 50px auto;
   background-color: @bgcolor;
   border: 30px solid @bgborder;
   box-sizing: border-box;
   position: relative;
   padding-top: 10px;
+  h2 {
+    line-height: 35px;
+  }
+  .btn {
+    margin-top: 10px;
+  }
   a {
     color: #333;
+  }
+  .tag {
+    color: #285aa5;
   }
   .back {
     margin: 5px 10px;
@@ -124,11 +163,13 @@ export default {
   .list:hover {
     box-shadow: 0px 5px 8px #999;
   }
+.close{
+  top: 40px;
 }
 h1 {
   text-align: center;
 }
-box {
+.box {
   width: 100%;
   max-width: 800px;
   margin: 30px auto;
@@ -155,26 +196,32 @@ box {
   line-height: 38px;
   padding-left: 5px;
   left: 5px;
-   border-radius: 5px;
+  border-radius: 5px;
 }
 .listr span {
   position: relative;
   left: -80px;
 }
-.star{
+.star {
   position: absolute;
   top: 0;
   right: -60px;
   font-size: 20px;
-  border:2px solid red;
+  border: 2px solid red;
   border-radius: 5px;
-  transition: all .2s linear;
+  transition: all 0.2s linear;
 }
+
 .star:hover {
-    box-shadow: 0px 5px 8px #999;
-  }
-.close{
+  box-shadow: 0px 5px 8px #999;
+}
+.close {
   top: 40px;
 }
+.palist {
+  width: 750px;
+  margin-top: 10px;
+}
 </style>
+
 
