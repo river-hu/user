@@ -8,7 +8,13 @@
 </template>
 <script>
     export default {
-      
+      name:"app",
+      created(){
+        this.$Notice.warning({
+                    title: '网站提醒',
+                    desc: "网站尚未完善，请耐心等待"
+                });
+      }
     };
   
 </script>

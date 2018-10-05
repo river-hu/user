@@ -4,7 +4,19 @@
     <div class="back"><Icon type="md-arrow-round-back" /></div>
     </router-link>
      <Tabs >
-        <TabPane label="算法研究"  icon="md-code-working">标签一的内容</TabPane>
+        <TabPane label="算法研究"  icon="md-code-working">
+            <div class="box">
+              
+              <h1 @click="onoff">递归实现冒泡排序</h1>
+              <div class="dis-box" v-if="off">
+                <div class="star" @click="star">开始</div>
+                <div class="star close" @click="close">关闭</div>
+                  <div class="listr" v-for="(v,index) in arr" v-bind:key="index" :style='{width:(v.a*5+"px"),top:index*55+"px"}'>
+                <span>{{v.a}}</span>
+                </div>
+              </div>
+          </div>
+        </TabPane>
         <TabPane label="爬虫研究"  icon="ios-bug">标签二的内容</TabPane>
         <TabPane label="其他js研究"  icon="logo-javascript">标签三的内容</TabPane>
     </Tabs>
@@ -13,16 +25,61 @@
 </template>
 <script>
 export default {
-    name:"mycode"
-}
+  name: "mycode",
+  data() {
+    return {
+      arr: [],
+      off: false,
+      index:0
+    };
+  },
+  methods: {
+    onoff() {
+       this.arr=[];
+       this.index= 0;
+      for (var i = 0; i < 10; i++) {
+        //生成随机数
+        this.arr.push({a:Math.floor(Math.random() * 100)});
+      }
+      this.off = true;
+    },
+    star(){ //开始排序函数
+       var len = this.arr.length;
+        var j = 0;
+        var that = this;
+        
+       cdis();  //嵌套内部循环
+       function cdis(){
+        
+        if(that.arr[j].a>that.arr[j+1].a){
+             
+             var temp = that.arr[j].a; //数据交换
+            that.arr[j].a= that.arr[j+1].a
+            that.arr[j+1].a= temp;
+        }
+        j++;
+        if(j<len-that.index-1){ //内层循环终止指令
+            cdis();
+        }
+       }
+        that.index++;
+        if(that.index<len){ //外层循环终止指令
+            this.star();
+        }
+    },
+    close(){
+      this.off = false;
+    }
+  }
+};
 </script>
 <style lang="less" scoped>
 @fcolor : #285aa5;
 @bgcolor :rgba(255, 255, 255, 0.7);
 @bgborder : rgba(255, 255, 255, 0.1);
- .ivu-tabs-nav-container{
-      font-size: 20px!important;
-  }
+.ivu-tabs-nav-container {
+  font-size: 20px !important;
+}
 .code {
   width: 80%;
   min-width: 600px;
@@ -54,19 +111,70 @@ export default {
     background-color: rgba(255, 255, 255, 0.4);
     color: @fcolor;
   }
- 
-  .list{
-      display: inline-block;
-      background: rgba(255, 255, 255, 0.4);
-      font-size: 20px;
-      padding: 10px 15px;
-      margin: 20px;
-      transition: all .2s linear;
-      border-radius: 5px;
+
+  .list {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.4);
+    font-size: 20px;
+    padding: 10px 15px;
+    margin: 20px;
+    transition: all 0.2s linear;
+    border-radius: 5px;
   }
-  .list:hover{
-      box-shadow: 0px 5px 8px #999;
+  .list:hover {
+    box-shadow: 0px 5px 8px #999;
   }
+}
+h1 {
+  text-align: center;
+}
+box {
+  width: 100%;
+  max-width: 800px;
+  margin: 30px auto;
+}
+.dis-box {
+  width: 530px;
+  margin: 10px auto;
+  height: 550px;
+  position: relative;
+  border: 5px solid #795548;
+  padding: 10px;
+  padding-left: 20px;
+  padding-top: 5px;
+}
+.dis-box .listr {
+  height: 40px;
+  position: absolute;
+  transition: all 0.1s linear;
+  background: #e1e1e1;
+  border: 3px solid #f44336;
+  box-sizing: border-box;
+  font-size: 30px;
+  margin-bottom: 10px;
+  line-height: 38px;
+  padding-left: 5px;
+  left: 5px;
+   border-radius: 5px;
+}
+.listr span {
+  position: relative;
+  left: -80px;
+}
+.star{
+  position: absolute;
+  top: 0;
+  right: -60px;
+  font-size: 20px;
+  border:2px solid red;
+  border-radius: 5px;
+  transition: all .2s linear;
+}
+.star:hover {
+    box-shadow: 0px 5px 8px #999;
+  }
+.close{
+  top: 40px;
 }
 </style>
 
